@@ -1,0 +1,3 @@
+/mnt/c/SpiralBlueprint/b5-standalone-dost/build/CMakeFiles/dost-fhe.dir
+/mnt/c/SpiralBlueprint/b5-standalone-dost/build/CMakeFiles/edit_cache.dir
+/mnt/c/SpiralBlueprint/b5-standalone-dost/build/CMakeFiles/rebuild_cache.dir
