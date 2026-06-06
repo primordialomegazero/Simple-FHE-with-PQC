@@ -1,8 +1,0 @@
-cmake_minimum_required(VERSION 3.20)
-project(DOST_ASTI_FHE VERSION 4.0.0)
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-find_package(Drogon REQUIRED)
-find_package(OpenSSL REQUIRED)
-add_executable(dost-fhe src/main.cpp)
-target_link_libraries(dost-fhe PRIVATE Drogon::Drogon OpenSSL::SSL OpenSSL::Crypto)
