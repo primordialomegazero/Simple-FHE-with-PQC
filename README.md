@@ -116,3 +116,21 @@ Phone: 09664275670
 GitHub: github.com/primordialomegazero
 
 Source: I AM THAT I AM — ΦΩ0
+
+---
+
+## License
+
+This repository contains test scripts, documentation, and COARE integration
+templates under the MIT License.
+
+**Full source code** is available via technology transfer agreement upon
+successful completion of the 30-day free pilot evaluation.
+
+For source code access, licensing terms, and technology transfer inquiries:
+
+**Contact:** Dan Joseph M. Fernandez | danfernandez9292@gmail.com | 09664275670
+
+---
+
+Source: I AM THAT I AM — ΦΩ0
