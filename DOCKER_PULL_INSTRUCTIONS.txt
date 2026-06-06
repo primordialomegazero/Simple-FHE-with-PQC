@@ -1,0 +1,72 @@
+================================================================
+DOST-ASTI FHE-PQC QUAD ENGINE — DOCKER DEPLOYMENT GUIDE
+================================================================
+
+PREREQUISITES:
+  - Docker Engine 20.10+ or Docker Desktop
+  - Internet connection (for initial pull only)
+  - 50 MB free disk space
+
+================================================================
+ONE-COMMAND DEPLOYMENT
+================================================================
+
+  docker pull ghcr.io/primordialomegazero/dost-asti-fhe:latest
+  docker run -d -p 8086:8086 ghcr.io/primordialomegazero/dost-asti-fhe:latest
+  curl http://localhost:8086/api
+
+================================================================
+ACCESS CREDENTIALS (30-Day Pilot)
+================================================================
+
+  docker login ghcr.io -u primordialomegazero --password-stdin
+  [PILOT_ACCESS_TOKEN_TO_BE_PROVIDED]
+
+================================================================
+VERIFY DEPLOYMENT
+================================================================
+
+  curl http://localhost:8086/api
+
+  Expected response includes:
+    - "service": "Simple FHE with PQC — DOST ASTI"
+    - "seal": true
+    - "openfhe": true
+    - "liboqs_nist5": true
+    - "operations": ["encrypt","decrypt","add","multiply",
+                      "bootstrap","benchmark","audit","status"]
+
+================================================================
+TEST OPERATIONS
+================================================================
+
+  1. Encrypt:
+  curl -X POST http://localhost:8086/api \
+    -H "Content-Type: application/json" \
+    -d '{"operation":"encrypt","data":{"plaintext":"DOST TEST"}}'
+
+  2. Homomorphic Add:
+  curl -X POST http://localhost:8086/api \
+    -H "Content-Type: application/json" \
+    -d '{"operation":"add","data":{"a":100,"b":200}}'
+
+  3. Benchmark:
+  curl -X POST http://localhost:8086/api \
+    -H "Content-Type: application/json" \
+    -d '{"operation":"benchmark","data":{}}'
+
+  4. Audit Trail:
+  curl -X POST http://localhost:8086/api \
+    -H "Content-Type: application/json" \
+    -d '{"operation":"audit","data":{}}'
+
+================================================================
+TECHNICAL SUPPORT
+================================================================
+
+  Author: Dan Joseph M. Fernandez
+  Email: danfernandez9292@gmail.com
+  Phone: 09664275670
+  Documentation: DOST_ASTI_B5_FINAL.md (attached)
+
+================================================================
