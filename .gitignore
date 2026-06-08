@@ -1,0 +1,7 @@
+*.pyc
+pycache/
+.DS_Store
+*.swp
+.swo
+.env
+results/.log
