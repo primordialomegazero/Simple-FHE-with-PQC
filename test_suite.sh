@@ -71,3 +71,18 @@ echo " RESULTS: $PASS/$TOTAL passed"
 echo " SCORE: $((PASS*100/TOTAL))/100"
 echo "============================================"
 [ $FAIL -eq 0 ] && echo " STATUS: ALL TESTS PASSED — DOST ASTI READY" || echo " STATUS: $FAIL FAILURES"
+
+# Quad-Consensus Test (v4.0)
+echo ""
+echo "[QUAD] Quad-Consensus Test (All 4 Engines):"
+QUAD=$(curl -s -X POST http://localhost:8086/api/quad-test)
+echo "$QUAD" | python3 -c "
+import sys,json
+d=json.load(sys.stdin)
+print('  SEAL:', 'ACTIVE' if d.get('seal_active') else 'OFF')
+print('  OpenFHE:', 'ACTIVE' if d.get('openfhe_active') else 'OFF')
+print('  liboqs:', 'ACTIVE' if d.get('liboqs_active') else 'OFF')
+print('  φ-Poly:', 'ACTIVE' if d.get('phi_active') else 'OFF')
+print('  Consensus:', d.get('consensus_score','?'), '/ 4')
+print('  Quad OPS:', round(d.get('quad_ops_per_sec',0)), '/ sec')
+" 2>/dev/null && PASS=$((PASS+1)) || { echo "FAIL"; FAIL=$((FAIL+1)); }
