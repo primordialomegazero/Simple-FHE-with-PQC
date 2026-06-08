@@ -79,13 +79,6 @@ Tags: latest, v4.0-quad-consensus
 Access: 30-day pilot token provided
 Manual Installation
 bash
-git clone https://github.com/primordialomegazero/Simple-FHE-with-PQC-full-source-code-
-cd Simple-FHE-with-PQC-full-source-code-
-mkdir build && cd build
-cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=17
-make -j$(nproc)
-./dost-fhe
-Requires: SEAL 4.1.1, OpenFHE 1.2.0, liboqs 0.10.0, GCC 11.4.0+, CMake 3.20+
 
 COARE HPC Integration
 Step 1: SLURM Benchmark
