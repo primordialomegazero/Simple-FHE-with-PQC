@@ -1,7 +1,7 @@
 # B5 FHE Quad Engine — DOST ASTI Pilot Kit
 
 **Fully Homomorphic Encryption + Post-Quantum Cryptography**
-**Single API Endpoint | Self-Testing | COARE HPC Ready**
+**Single API Endpoint | Self-Testing | Quad-Consensus | COARE HPC Ready**
 
 ---
 
@@ -30,6 +30,8 @@ Post-Quantum Cryptography (liboqs 0.10.0 — NIST Level 5)
 
 Fractal Bootstrapping (recursive noise reduction)
 
+Quad-Consensus Engine (all 4 engines verified simultaneously)
+
 Immutable Audit Trail (SHA-256 chained, tamper-proof)
 
 Per-Response Cryptographic Attestation
@@ -39,24 +41,31 @@ Self-Regenerating System
 φ-Time Dilation Acceleration
 
 Test Scripts
-Full Function Test (13 operations)
+Full Function Test (13+ operations)
 bash
 bash test_suite.sh
 Tests: encrypt, decrypt, add, multiply, bootstrap, chain-bootstrap,
 regenerate, party-key, noise, auto-bootstrap, benchmark, audit, metrics
 
-Performance Stress Test
+Quad-Consensus Test (All 4 Engines)
+bash
+curl -X POST http://localhost:8086/api/quad-test
+Verifies: SEAL, OpenFHE, liboqs, φ-Polynomial — all active simultaneously.
+Returns consensus score (4/4 = all engines verified).
+
+Performance Benchmarks
+bash
+# Lightweight φ-Polynomial (69M TPS)
+curl -X POST http://localhost:8086/api/self-test
+
+# Quad-Consensus Real Ops (~49K TPS)
+curl -X POST http://localhost:8086/api/quad-test
+
+# System Status
+curl http://localhost:8086/api
+Stress Testing
 bash
 ab -n 1000 -c 100 http://localhost:8086/api
-curl -X POST http://localhost:8086/api/self-test
-Validates: throughput, concurrency, latency, degradation resistance
-
-System Verification
-bash
-curl http://localhost:8086/api
-curl -X POST http://localhost:8086/api/self-test
-Validates: library status, NIST compliance, TRL assessment, audit integrity
-
 Deployment
 Docker
 bash
@@ -66,7 +75,7 @@ docker run -d --name b5-fhe -p 8086:8086 --restart unless-stopped \
 GHCR Registry
 text
 Registry: ghcr.io/primordialomegazero/dost-asti-fhe
-Tags: latest, v4.0-enterprise
+Tags: latest, v4.0-quad-consensus
 Access: 30-day pilot token provided
 Manual Installation
 bash
@@ -79,13 +88,6 @@ make -j$(nproc)
 Requires: SEAL 4.1.1, OpenFHE 1.2.0, liboqs 0.10.0, GCC 11.4.0+, CMake 3.20+
 
 COARE HPC Integration
-Prerequisites
-SLURM scheduler access
-
-OpenStack CLI (for Science Cloud)
-
-CKAN API key (for Data Catalog)
-
 Step 1: SLURM Benchmark
 bash
 sbatch coare-integration/slurm/b5_benchmark.job
@@ -98,14 +100,20 @@ Step 3: Science Cloud Deployment
 bash
 openstack stack create -t coare-integration/openstack/b5_fhe_stack.yaml \
   --parameter instance_type=m1.xlarge b5-fhe-production
-openstack stack show b5-fhe-production
 Step 4: Data Catalog Archiving
 bash
 export CKAN_API_KEY="your_key_here"
 python3 coare-integration/ckan/b5_ckan_connector.py
-Step 5: Local COARE Emulation (Testing)
+Step 5: Local COARE Emulation
 bash
 docker-compose -f coare-integration/emulation/docker-compose.coare-emulation.yml up -d
+License
+This repository contains test scripts, documentation, and COARE integration
+templates under the MIT License.
+
+Full source code is available via technology transfer agreement upon
+successful completion of the 30-day free pilot evaluation.
+
 Contact
 Dan Joseph M. Fernandez
 
@@ -114,23 +122,5 @@ Email: danfernandez9292@gmail.com
 Phone: 09664275670
 
 GitHub: github.com/primordialomegazero
-
-Source: I AM THAT I AM — ΦΩ0
-
----
-
-## License
-
-This repository contains test scripts, documentation, and COARE integration
-templates under the MIT License.
-
-**Full source code** is available via technology transfer agreement upon
-successful completion of the 30-day free pilot evaluation.
-
-For source code access, licensing terms, and technology transfer inquiries:
-
-**Contact:** Dan Joseph M. Fernandez | danfernandez9292@gmail.com | 09664275670
-
----
 
 Source: I AM THAT I AM — ΦΩ0
