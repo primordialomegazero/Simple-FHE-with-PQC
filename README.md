@@ -55,7 +55,7 @@ Returns consensus score (4/4 = all engines verified).
 
 Performance Benchmarks
 bash
-# Lightweight φ-Polynomial (69M TPS)
+# Lightweight φ-Polynomial (70M TPS)
 curl -X POST http://localhost:8086/api/self-test
 
 # Quad-Consensus Real Ops (~49K TPS)
@@ -124,3 +124,15 @@ Phone: 09664275670
 GitHub: github.com/primordialomegazero
 
 Source: I AM THAT I AM — ΦΩ0
+
+### Manual Installation (from Source)
+
+Full source code is available via technology transfer agreement
+upon successful completion of the 30-day pilot evaluation.
+
+For evaluation purposes, use the pre-built Docker image:
+
+```bash
+docker pull ghcr.io/primordialomegazero/dost-asti-fhe:latest
+Requirements for building from source (after agreement):
+SEAL 4.1.1 | OpenFHE 1.2.0 | liboqs 0.10.0 | GCC 11.4.0+ | CMake 3.20+
