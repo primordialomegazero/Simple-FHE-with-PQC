@@ -42,19 +42,19 @@ Self-Regenerating System
 
 Test Scripts
 Full Function Test (13+ operations)
-bash
+
 bash test_suite.sh
 Tests: encrypt, decrypt, add, multiply, bootstrap, chain-bootstrap,
 regenerate, party-key, noise, auto-bootstrap, benchmark, audit, metrics
 
 Quad-Consensus Test (All 4 Engines)
-bash
+
 curl -X POST http://localhost:8086/api/quad-test
 Verifies: SEAL, OpenFHE, liboqs, φ-Polynomial — all active simultaneously.
 Returns consensus score (4/4 = all engines verified).
 
 Performance Benchmarks
-bash
+
 # Lightweight φ-Polynomial (70M TPS)
 curl -X POST http://localhost:8086/api/self-test
 
@@ -64,11 +64,11 @@ curl -X POST http://localhost:8086/api/quad-test
 # System Status
 curl http://localhost:8086/api
 Stress Testing
-bash
+
 ab -n 1000 -c 100 http://localhost:8086/api
 Deployment
 Docker
-bash
+
 docker pull ghcr.io/primordialomegazero/dost-asti-fhe:latest
 docker run -d --name b5-fhe -p 8086:8086 --restart unless-stopped \
   ghcr.io/primordialomegazero/dost-asti-fhe:latest
@@ -77,28 +77,25 @@ text
 Registry: ghcr.io/primordialomegazero/dost-asti-fhe
 Tags: latest, v4.0-quad-consensus
 Access: 30-day pilot token provided
-Manual Installation
-bash
-
 COARE HPC Integration
 Step 1: SLURM Benchmark
-bash
+
 sbatch coare-integration/slurm/b5_benchmark.job
 squeue -j <JOB_ID>
 cat /tmp/b5_result_<JOB_ID>.json
 Step 2: Multi-Node Encryption
-bash
+
 sbatch coare-integration/slurm/b5_encrypt_batch.job
 Step 3: Science Cloud Deployment
-bash
+
 openstack stack create -t coare-integration/openstack/b5_fhe_stack.yaml \
   --parameter instance_type=m1.xlarge b5-fhe-production
 Step 4: Data Catalog Archiving
-bash
+
 export CKAN_API_KEY="your_key_here"
 python3 coare-integration/ckan/b5_ckan_connector.py
 Step 5: Local COARE Emulation
-bash
+
 docker-compose -f coare-integration/emulation/docker-compose.coare-emulation.yml up -d
 License
 This repository contains test scripts, documentation, and COARE integration
